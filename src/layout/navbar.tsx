@@ -2,8 +2,6 @@ import {
     Navbar,
     NavbarBrand,
     NavbarContent,
-    NavbarItem,
-    Link,
     DropdownItem,
     DropdownTrigger,
     Dropdown,
@@ -31,7 +29,7 @@ import {
         <NavbarContent justify="start">
           <NavbarBrand className="mr-4">
             <AcmeLogo />
-            <p className="hidden sm:block font-bold text-inherit">ACME</p>
+            <p className="hidden sm:block font-bold text-inherit">InstaApp</p>
           </NavbarBrand>
         </NavbarContent>
   
