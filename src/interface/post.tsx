@@ -6,5 +6,7 @@ export interface PostData{
     caption?: string
     image_url?: string
     user?: UserData
+    likes_count?: number
     comments?: CommentData[] 
+    amilike?: boolean
 }
