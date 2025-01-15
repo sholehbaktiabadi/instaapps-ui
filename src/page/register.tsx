@@ -1,6 +1,7 @@
 import React, { FormEvent } from "react";
 import { Form, Input, Button } from "@nextui-org/react";
 import { RegisterData } from "../interface/register";
+import { Link } from "react-router-dom";
 
 export default function Register() {
     const [credential, setCredential] = React.useState<RegisterData>();
@@ -51,6 +52,7 @@ export default function Register() {
                         Register
                     </Button>
                 </Form>
+                <p className="my-2 text-sm text-end text-slate-900">sudah punya akun ? <Link to={'/login'} className="text-blue-600 bg-slate-300 rounded px-2 py-1 mx-1">Login</Link></p>
             </div>
         </div>
     );

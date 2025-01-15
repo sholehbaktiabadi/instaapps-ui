@@ -2,7 +2,7 @@ import { FormEvent } from "react";
 import { Form, Input, Button } from "@nextui-org/react";
 import { InstaApi } from "../api";
 import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 
 
@@ -55,6 +55,7 @@ export default function Login() {
                             Login
                         </Button>
                     </Form>
+                    <p className="my-2 text-sm text-end text-slate-900">belum punya akun ? <Link to={'/register'} className="text-blue-600 bg-slate-300 rounded px-2 py-1 mx-1">Register</Link></p>
                 </div>
             </div>
             <ToastContainer position="top-center" />
