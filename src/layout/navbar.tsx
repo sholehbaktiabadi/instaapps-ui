@@ -8,6 +8,11 @@ import {
     DropdownMenu,
     Avatar,
   } from "@nextui-org/react";
+import { useCookies } from "react-cookie";
+import { InstaApi } from "../api";
+import { useEffect, useState } from "react";
+import { UserData } from "../interface/user";
+import { useNavigate } from "react-router-dom";
   
   export const AcmeLogo = () => {
     return (
@@ -24,6 +29,30 @@ import {
 
   
   export default function AppNavbar() {
+        const [ user, setUser ] = useState<UserData>()
+        const [cookies, setCookies, removeCookies] = useCookies(['token'])
+        const navigate = useNavigate()
+        const fetchUser = async () => {
+            const res = await InstaApi.getUser(cookies.token)
+            try {
+                const response = res.data
+                setUser(response)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        const onLogOut = async () => {
+            InstaApi.logOut(cookies.token)
+            setCookies("token", null)
+            removeCookies("token", { path: '/' });
+            navigate('login')
+      }
+    
+        useEffect(()=>{
+            fetchUser()
+        },[])
+        
     return (
       <Navbar isBordered>
         <NavbarContent justify="start">
@@ -48,11 +77,11 @@ import {
             </DropdownTrigger>
             <DropdownMenu className="dark" aria-label="Profile Actions" variant="flat">
               <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-semibold">Signed in as</p>
-                <p className="font-semibold">zoey@example.com</p>
+                <p className="font-semibold">{user?.name}</p>
+                <p className="font-semibold">{user?.email}</p>
               </DropdownItem>
               <DropdownItem key="settings">Profile</DropdownItem>
-              <DropdownItem key="logout" color="danger">
+              <DropdownItem onPress={onLogOut} key="logout" color="danger">
                 Log Out
               </DropdownItem>
             </DropdownMenu>
