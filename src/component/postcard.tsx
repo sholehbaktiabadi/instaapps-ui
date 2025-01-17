@@ -29,6 +29,7 @@ export default function PostCard({ posts }: { posts: PostData[] }) {
       const response = res.data
       setPost(response.data)
     } catch (error) {
+      // TODO - add error handler
       console.log(error)
     }
   }
@@ -41,6 +42,7 @@ export default function PostCard({ posts }: { posts: PostData[] }) {
       setPost(response.data)
       getPost(post?.id as number)
     } catch (error) {
+      // TODO - add error handler
       console.log(error)
     }
   }
@@ -50,6 +52,7 @@ export default function PostCard({ posts }: { posts: PostData[] }) {
       amilike ? await InstaApi.deletePostLike(post?.id as number, cookies.token) : await InstaApi.createPostLike({ post_id: post?.id }, cookies.token)
       getPost(post?.id as number)
     } catch (error) {
+      // TODO - add error handler
       console.log(error)
     }
   }
@@ -76,7 +79,7 @@ export default function PostCard({ posts }: { posts: PostData[] }) {
         <ModalContent>
           {() => (
             <>
-              <ModalHeader className="flex flex-col gap-1">{post?.caption}</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1" />
               <ModalBody>
                 <div className="flex w-full">
                   <div className="basis-1/2">
@@ -94,7 +97,7 @@ export default function PostCard({ posts }: { posts: PostData[] }) {
                         <Image
                           height={30}
                           width={30}
-                          src={post?.image_url}
+                          src={'https://i.pravatar.cc/150?u=a042581f4e29026704d'}
                         />
                       </div>
                       <div className="flex flex-row">
@@ -125,6 +128,9 @@ export default function PostCard({ posts }: { posts: PostData[] }) {
                   </div>
                 </div>
               </ModalBody>
+              <div className="ps-6 flex">
+              <p className="text-sm text-slate-200 my-3">{post?.caption}</p>
+              </div>
               <div className="ps-6 flex flex-row items-center">
                 <FontAwesomeIcon icon={faHeart} size="lg" color={post?.amilike ? "red": "white"} onClick={() => likeOrDelete(post?.amilike as boolean)} className="mr-2 hover:cursor-pointer" />
                 <div className="font-xs text-slate-300">{post?.likes_count}</div>

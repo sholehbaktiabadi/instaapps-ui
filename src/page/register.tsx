@@ -17,6 +17,8 @@ export default function Register() {
             setCookies("token", res.data.token, { path: '/' })
             navigate('/')
         } catch (error) {
+            // TODO - add error handler
+            console.log(error)
             notify()
         }
     };

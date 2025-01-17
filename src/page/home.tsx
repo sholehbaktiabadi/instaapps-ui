@@ -15,6 +15,7 @@ export function Home() {
             const response = res.data
             setPosts(response.data)
         } catch (error) {
+            // TODO - add error handler
             console.log(error)
         }
     }

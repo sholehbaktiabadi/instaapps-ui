@@ -38,6 +38,7 @@ import { useNavigate } from "react-router-dom";
                 const response = res.data
                 setUser(response)
             } catch (error) {
+              // TODO - add error handler
                 console.log(error)
             }
         }

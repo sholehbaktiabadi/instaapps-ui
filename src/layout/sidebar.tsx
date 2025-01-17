@@ -49,8 +49,9 @@ export default function SideBar() {
         const data = Object.fromEntries(new FormData(e.currentTarget));
         try {
             await InstaApi.addPost({...data, image_url: imageUrl}, cookies.token)
-            navigate('/')
+            window.location.href = '/'
         } catch (error) {
+          // TODO - add error handler
             console.log(error)
         }
 

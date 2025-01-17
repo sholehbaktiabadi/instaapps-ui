@@ -19,6 +19,8 @@ export default function Login() {
             setCookies("token", res.data.token, { path: '/' })
             navigate('/')
         } catch (error) {
+            // TODO - add error handler
+            console.log(error)
             notify()
         }
 
