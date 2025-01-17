@@ -10,3 +10,8 @@ export interface PostData{
     comments?: CommentData[] 
     amilike?: boolean
 }
+
+export interface AddPost{
+    caption?: string
+    image_url?: string
+}

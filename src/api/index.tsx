@@ -3,6 +3,8 @@ import { env } from "../config/env";
 import { LoginData } from "../interface/login";
 import { CreateComment } from "../interface/comment";
 import { CreatePostLike } from "../interface/like";
+import { AddPost } from "../interface/post";
+import { RegisterData } from "../interface/register";
 
 
 export class InstaApi {
@@ -11,6 +13,10 @@ export class InstaApi {
 
     static async login(data: LoginData) {
         return await axios.post(this.baseUrl + '/api/login', data, { headers: this.headers })
+    }
+
+    static async register(data: RegisterData) {
+        return await axios.post(this.baseUrl + '/api/register', data, { headers: this.headers })
     }
 
     static async getUser(token: string) {
@@ -29,6 +35,10 @@ export class InstaApi {
         return await axios.get(this.baseUrl + `/api/posts/${id}`, { headers: { ...this.headers, "Authorization": `Bearer ${token}` } })
     }
 
+    static async addPost(data: AddPost, token: string) {
+        return await axios.post(this.baseUrl + `/api/posts`, data,  { headers: { ...this.headers, "Authorization": `Bearer ${token}` } })
+    }
+
     static async createPostComment(data: CreateComment, token: string) {
         return await axios.post(this.baseUrl + `/api/posts/comments`, data, { headers: { ...this.headers, "Authorization": `Bearer ${token}` } })
     }
@@ -39,5 +49,9 @@ export class InstaApi {
 
     static async deletePostLike(id: number, token: string) {
         return await axios.delete(this.baseUrl + `/api/posts/likes/${id}`, { headers: { ...this.headers, "Authorization": `Bearer ${token}` } })
+    }
+
+    static async uploadImage(formData: FormData, token: string) {
+        return await axios.post(this.baseUrl + `/api/upload-image`, {...formData}, { headers: { ...this.headers, "Authorization": `Bearer ${token}` } })
     }
 }
